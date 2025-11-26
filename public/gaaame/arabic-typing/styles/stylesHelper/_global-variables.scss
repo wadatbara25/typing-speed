@@ -1,0 +1,19 @@
+//#region variables - pallette
+$blue-dark-clr: #164863;
+$blue-light-clr:#427D9D;
+$white-dark-clr: #9BBEC8;
+$white-light-clr: #DDF2FD;
+$red-light-clr: #f44336;
+$boxShadow-whiteDark : 0 10px 0 $white-dark-clr;
+$boxShadow-blueDark : 0 10px 0 $blue-dark-clr;
+$boxShadow-bluelight : 0 10px 0 $blue-light-clr;
+$border-whiteDark : 3px solid $white-dark-clr;
+$border-blueDark : 3px solid $blue-dark-clr;
+$border-bluelight : 3px solid $blue-light-clr;
+$borderRadius-menu : 2.5rem;
+$borderRadius-input : 6px;
+$borderRadius-btns : 10px;
+$borderRadius-circle: 50%; 
+$main-trans-time: 0.5s;
+ $spaceGrotesk-Fnt:'Space Grotesk', sans-serif
+ //#endregion

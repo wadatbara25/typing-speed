@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 اختبار سرعة الكتابة بالعربية | Typing Speed Test</title>
+
+    <meta name="author" content="Ahmed Saad / جامعة البطانة">
+    <meta name="description" content="لعبة تفاعلية لتدريب سرعة ودقة الكتابة باللغة العربية.">
+    <meta name="keywords" content="لعبة طباعة, سرعة الكتابة, العربية, typing speed test, Arabic typing">
+    <link rel="icon" href="./assets/images/site_icon.ico" type="image/x-icon">
+
+    <!-- 🧩 مكتبة أيقونات Font Awesome -->
+    <link rel="stylesheet" href="./styles/stylesHelper/all.min.css">
+
+    <!-- 🎨 تنسيقات أساسية -->
+    <link rel="stylesheet" href="./styles/stylesHelper/normalize.css">
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-- 🖋️ خطوط Google (Cairo للعربية + Space Grotesk للإنجليزية) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- 🧠 تحسين عرض الخطوط للعربية -->
+    <style>
+        body {
+            font-family: 'Cairo', 'Space Grotesk', sans-serif;
+            direction: rtl;
+            text-align: center;
+            background: linear-gradient(135deg, #eef2ff, #f0f9ff);
+        }
+
+        .typing-app {
+            font-family: inherit;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        h2, h3, button {
+            font-family: 'Cairo', sans-serif;
+        }
+    </style>
+
+    <!-- ⚙️ تصحيح خطأ التصدير لبعض مكتبات JS -->
+    <script>var exports = {};</script>
+</head>
+
+
+<body>
+ <!-- Start typing speed test App -->
+     <div class="typing-app">
+        <div class="container">       
+            <!-- Start main-menu-Typing -->
+            <div class="main-typing-menu makeMenu d-non">
+                <img src="./assets/images/main-menu-icon.svg" alt="The Logo Of The Game">
+                <div class="main-menu-btns">
+                    <button class="start-typing-btn" data-layout="typing-page">
+                        Start Typing
+                    </button>
+                    <button class="setup-typing-btn" data-layout="setup-typing-menu">
+                        Typing Setup
+                    </button>
+                    <button class="high-score-btn" data-layout="high-scores-menu">
+                        High Scores
+                    </button>
+                </div>
+            </div>
+            <!-- end main-menu-Typing -->
+            <!-- Start typing-setup-menu -->
+            <div class="setup-typing-menu makeMenu d-none">
+                <h2 class="makeheader">Typing Setup</h2>
+                <div class="setup-menu-btns">
+                    <input type="text" placeholder="Enter Your Name" class="userGetName makeInput">
+                    <div class="languages-btns">
+                        <button class="active" data-key="language" data-value="english">
+                            English
+                        </button>
+                        <button data-key="language" data-value="arabic">
+                            Arabic
+                        </button>
+                    </div>
+                    <div class="levels-btns">
+                        <button  data-key="level" data-value="easy">
+                            easy
+                        </button>
+                        <button class="active" data-key="level" data-value="medium">
+                            medium
+                        </button>
+                        <button data-key="level" data-value="hard">
+                            hard
+                        </button>
+                    </div>
+                    <div class="timers-btns" data-value="timers">
+                        <button class="timer-30" data-key="timer" data-value="30">
+                            30s
+                        </button>
+                        <button class="timer-60 active" data-key="timer" data-value="60">
+                            60s
+                        </button>
+                        <button class="timer-90" data-key="timer" data-value="90">
+                            90s
+                        </button>
+                        <button class="timer-120" data-key="timer" data-value="120">
+                            120s
+                        </button>
+                    </div>
+                    <div class="sound-btns">
+                        <button class="active" data-key="sound" data-value="on">
+                            <i class="fa-solid fa-volume-high fa-xl"></i>
+                        </button>
+                        <button data-key="sound" data-value="off">
+                            <i class="fa-solid fa-volume-xmark fa-xl"></i>
+                        </button>
+                    </div>   
+                </div>
+                <button class="done-setup-btn makeDownBtn back-btn">
+                    <i class="fa-solid fa-check"></i>
+                </button>
+            </div>
+            <!-- end typing-setup-menu -->
+            <!-- Start high-score-menu -->
+            <div class="high-scores-menu makeMenu d-none">
+                <h2 class="makeheader">High Scores</h2>
+                <div class="high-scores-score">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>word/min</td>
+                                <td>&nbsp;&nbsp;Acc&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;Lang&nbsp;&nbsp;</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="back-menu-btn makeDownBtn back-btn">
+                    <i class="fa-regular fa-hand-point-left"></i>
+                </button>
+            </div>
+            <!-- end high-score-menu -->
+            <!-- Start Typing Page -->
+            <div class="typing-page d-none">
+                <h2 class ="back-btn makeheader">
+                    Test your typing skills
+                </h2>
+                <div class="typing-info">
+                    <div class="timer circle">
+                        <span>120</span>
+                        Sec
+                    </div>
+                    <div class="measures">
+                        <div class="words-div">
+                            <span class="words-span">0</span>
+                            <span>words/min</span>
+                        </div>
+                        <div class="chars-div">
+                            <span class="chars-span">0</span>
+                            <span>chars/min</span>
+                        </div>
+                        <div class="acc-div">
+                            <span class="acc-span">0</span>
+                            <span>% accuracy</span>
+                        </div>
+                    </div>
+                    <button class="start-btn circle">
+                        start
+                    </button>
+                </div>
+                <div class="typing-place">
+                    <div class="words-data">
+                        <div class="word-done common">
+                        </div>
+                        <div class="coming-words common">
+                        </div>
+                    </div>
+                    <div class="word-input">
+                        <div class="empty-div"></div>
+                        <input type="text" placeholder="Type here" class="makeInput">    
+                    </div>
+                </div>
+            </div>
+            <!-- End Typing Page -->
+        </div>
+    </div>
+ <!-- End typing speed test App -->
+
+<!-- 🔹 ملف السكربت الرئيسي للعبة -->
+<script type="module" src="./scripts/main.js"></script>
+
+</body>
+
+</html>
+

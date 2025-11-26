@@ -1,0 +1,288 @@
+//#region imports
+@use "./stylesHelper/global-rules" as *;
+@use "./stylesHelper/global-variables" as *;
+//#endregion
+
+//#region global typing app
+body {
+    font-family: $spaceGrotesk-Fnt;
+    background-color: $blue-dark-clr;
+}
+@media (max-width: 500px){
+    body{
+        width: fit-content;
+    }
+}
+.typing-app{
+    .makeMenu{
+        @include mixinMakeMenu($borderRadius-menu);
+    }
+    .makeheader{
+            @include mixinMakeMenuHeader();
+    }
+    .makeDownBtn{
+        @include mixinMakeBckDwnBtn();
+        &:hover{
+            background-color: $blue-dark-clr;
+        }
+    }
+    .makeInput{
+        @include mixinMakeInput();
+    }
+}
+//#endregion
+
+//#region main typing menu
+.main-typing-menu{
+    img{
+        width:128px;
+        height: 128px;
+        margin: 0 auto;
+    }
+    .main-menu-btns{
+        @include mixinMakeDisplay(grid,center,center,1.5rem);
+        button{
+            @include mixinMakeBtn($borderRadius-menu,$blue-dark-clr,$white-light-clr);
+            height: 4rem;
+            width: 25rem;
+            &:hover{
+                box-shadow: $boxShadow-blueDark;
+                border: $border-blueDark;  
+            }
+        }
+    }
+}
+//#endregion
+
+//#region setup typing menu
+.setup-typing-menu{
+    .setup-menu-btns{
+        @include mixinMakeDisplay(grid,center,center,1.5rem);
+        input{    
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding:.5rem;
+            height: 4rem;
+            &:hover,
+            &:focus{
+                box-shadow: $boxShadow-blueDark;
+                border: $border-blueDark;  
+            }       
+        }
+        &>div{
+            @include mixinMakeDisplay(flex,space-around,center,0);
+            button{            
+                @include mixinMakeBtn($borderRadius-btns,$blue-light-clr,$white-light-clr);
+                display: inline-block;
+                height: 4rem;
+                width: 10rem;
+                &:hover,
+                &.active{
+                    box-shadow: $boxShadow-blueDark;
+                    border: $border-blueDark;  
+                    color: $blue-dark-clr;
+                }
+            }
+        }
+        .languages-btns button,
+        .sound-btns button{
+                width:calc(25rem / 2);
+        }   
+        .levels-btns button{
+            width:calc(25rem / 3);
+        }
+        .timers-btns button{
+                width:calc(25rem / 4);
+                text-transform: lowercase;
+        }
+    }
+
+}
+//#endregion
+
+//#region high-scores-menu
+.high-scores-menu{
+    max-width: 30rem !important;
+    .high-scores-score{
+        overflow-y: auto;
+        max-height: 24.5rem;
+        min-height: 10rem;
+    }
+    table{
+        font-size: 1rem;
+        width: 25rem;
+        text-align: center;
+        border-spacing: 0;
+        thead{
+            td{
+                @include mixinPropWithKit("border-radius", $borderRadius-input);
+                font-size: 1.1rem;
+                background-color: $white-light-clr;
+                color: $blue-light-clr;
+                font-weight: bold;
+                padding: 1rem .5rem;
+            }
+        }
+        tbody{
+            tr{
+                @include mixinPropWithKit("transition", $main-trans-time); 
+               &:hover td{
+                    background-color: $blue-dark-clr;
+                }
+            }
+            td{
+                padding: 1rem .5rem;
+                color: $white-light-clr;
+                border-bottom: 1px solid $blue-dark-clr;
+                &:last-child{
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}
+//#endregion
+
+//#region typing page
+.typing-page{
+    h2{
+        margin: 2rem auto !important;
+        line-height: 3rem;
+        cursor: pointer;
+    }
+    .typing-info{
+        @include mixinMakeDisplay(flex,center,flex-start, 3.2rem);
+        flex-wrap: wrap;
+        margin-top: 3.2rem;
+        user-select: none;
+        .circle{
+            @include mixinMakeDisplay(flex,center,center, 0);
+            @include mixinPropWithKit("border-radius", $borderRadius-circle);
+            flex-direction: column;
+            font-size: 1rem;
+            width: 6.25rem;
+            height: 6.25rem;
+            padding: 3rem;
+            border: 5px solid $blue-light-clr;   
+        }    
+        .timer {
+            font-size: 0.9rem;
+            color: $white-light-clr;
+            border: none !important;
+            background: radial-gradient(closest-side, $blue-dark-clr 89%, transparent 80% 100%), 
+            conic-gradient($blue-light-clr 100%, $white-light-clr 0);  
+            >span{
+                display: block;
+                font-weight: bold;
+                font-size: 2.5rem;
+                color: $white-light-clr;
+            }
+        }
+        .measures{
+            display: flex;
+            align-items: center;
+            color: $white-dark-clr;
+            gap: 3.2rem;
+            > div > span:first-of-type{
+                @include mixinMakeDisplay(flex,center,center , 0);
+                @include mixinPropWithKit("border-radius", $borderRadius-input);
+                font-size: 2.5rem;
+                font-weight: bold;
+                height: 5rem;
+                width: 5rem;
+                background-color: $white-dark-clr;
+                color: $blue-dark-clr;
+                margin-bottom: 1rem;    
+                overflow: hidden;
+            }
+        }
+        .start-btn{
+            @include mixinPropWithKit("transition", $main-trans-time);
+            background-color: $blue-dark-clr;
+            color: $white-light-clr;
+            font-size: 2rem;
+            cursor: pointer;
+            &:hover{
+                background-color: $white-light-clr;
+                color: $blue-dark-clr;
+            }
+            &.disapled{
+                cursor:text;
+                opacity: 0.7;
+                background-color: $white-light-clr;
+                color: $blue-dark-clr;  
+            }
+        }
+    }
+    .typing-place{
+        padding: 3rem 0;
+        display: flex;
+        flex-direction:column;
+        &>div{
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+        }
+        .words-data {
+            &> div{
+            @include mixinMakeDisplay(flex,initial,center, .7rem);
+            @include mixinPropWithKit("border-radius", $borderRadius-input);
+            flex-wrap: nowrap;
+            padding:1.5rem;
+            min-height: 6rem;
+            background-color: $white-light-clr;
+            color: $blue-light-clr;
+            font-size: 1.8rem;
+            margin-bottom: 1.3rem;
+            overflow: hidden;
+            user-select: none;
+            }
+            .word-done{
+                border-right: 0;
+                justify-content: end;
+                span{
+                    &.wrong{
+                        text-decoration: line-through $white-dark-clr;
+                        color: $white-dark-clr;
+                    }
+                    &.correct{
+                        color: $blue-light-clr;
+                    }
+                }
+            }
+            .coming-words{
+                border-left: 0;
+                > span:first-of-type{
+                    color: $blue-dark-clr;
+                    font-size: 2.5rem;
+                }
+            }
+        }
+        input{
+            font-size: 2.5rem;
+            padding:1.5rem;
+            max-width: 17rem;
+            &:focus{
+                border: $border-bluelight;
+                box-shadow: $boxShadow-bluelight;
+            }
+        }
+    }
+    
+}
+
+@media (max-width : 768px) {
+    .typing-info{
+        flex-direction: column-reverse;
+        gap: 2rem;
+        align-items: center !important;
+    }
+    .typing-place{
+        &>div{
+            grid-template-columns: 10rem 1fr !important;
+        }
+        input{
+            max-width:19rem !important;
+        }
+    }
+}
+//#endregion

@@ -1,0 +1,138 @@
+//#region imports
+@use "./global-variables" as *;
+//#endregion
+
+//#region global rules
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background-color: $white-light-clr
+}
+::-webkit-scrollbar-thumb {
+    background-color: $blue-light-clr;
+}
+progress {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+input:focus{
+    outline: none;
+}
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width : 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width : 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width : 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+h1,h2,h3{
+    margin: 0;
+}
+.d-none{
+    display: none !important;
+}
+//#endregion
+
+//#region global mixins
+@mixin mixinPropWithKit($proberty, $value){
+    #{$proberty}: $value;
+    -webkit-#{$proberty}: $value;
+    -moz-#{$proberty}: $value;
+    -ms-#{$proberty}: $value;
+    -o-#{$proberty}: $value;
+}
+
+@mixin mixinMakeDisplay($type, $justify, $align, $gap){
+    display: $type;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+@mixin mixinMakeMenu($rad){
+    @include mixinMakeDisplay(grid,center,initial,1rem);
+    @include mixinPropWithKit("border-radius", $rad);
+    position: relative;
+    box-shadow: $boxShadow-whiteDark;
+    border: $border-whiteDark;
+    max-width: 29rem;
+    padding: 2.2rem 2.2rem 4rem;
+    margin: 3rem auto 4rem;
+    background-color: $blue-light-clr
+}
+
+@mixin mixinMakeMenuHeader(){
+    margin: 1rem auto;
+    color: $white-light-clr;
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 5px; 
+    text-transform: capitalize;
+    font-weight: bold;
+    letter-spacing: .5rem;
+    word-spacing: .5rem;
+    width: fit-content;
+
+}
+
+@mixin mixinMakeBtn($borderRad, $clr, $backClr){
+    @include mixinMakeDisplay(flex,center,center, 0);
+    @include mixinPropWithKit("transition", $main-trans-time);
+    @include mixinPropWithKit("border-radius", $borderRad);    
+    border: $border-whiteDark;
+    box-shadow: $boxShadow-whiteDark;
+    color: $clr;
+    background-color: $backClr;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@mixin mixinMakeBckDwnBtn(){
+    @include mixinMakeBtn(50%,$white-light-clr, $blue-light-clr);
+    @include mixinPropWithKit("transform",translateX(-50%));
+    position: absolute;
+    left: 50%;
+    bottom: -2.5rem;
+    width: 5rem;
+    height: 5rem;
+    font-size: 2rem;
+}
+
+@mixin mixinMakeInput{
+    @include mixinPropWithKit("transition", $main-trans-time);
+    @include mixinPropWithKit("border-radius", $borderRadius-input);
+    box-shadow: $boxShadow-whiteDark;
+    border: $border-whiteDark;
+    background-color: $white-light-clr;
+    color: $blue-dark-clr;
+    padding:  1.5rem;
+    text-align: center;
+    overflow: hidden;
+    user-select: none;
+}
+//#endregion
